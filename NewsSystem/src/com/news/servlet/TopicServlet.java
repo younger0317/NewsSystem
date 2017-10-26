@@ -34,17 +34,7 @@ public class TopicServlet extends HttpServlet {
 		PrintWriter out=resp.getWriter();
 		TopicService topicService = new TopicServiceImpl();
 		
-		String type = (String)req.getAttribute("type");
-		if(type != null){
-			if(type.equals("frist")){
-				List<Topic> topicList = topicService.findAllTopic();
-				req.setAttribute("topicList", topicList);
-				req.getRequestDispatcher("/newspages/topic_list.jsp").forward(req, resp);
-				return;
-			}
-		}
-		
-		type = req.getParameter("type");
+		String type = req.getParameter("type");
 		if(type != null){
 			if(type.equals("modify")){
 				String tName = req.getParameter("tname");

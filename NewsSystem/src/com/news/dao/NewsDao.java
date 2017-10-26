@@ -48,5 +48,11 @@ public interface NewsDao {
 	 */
 	public int getTotalCountByTid(int tid);
 	
+	/**
+	 * 获取所有新闻
+	 * @return
+	 */
+	public List<News> findAllNews();
+	
 	
 }

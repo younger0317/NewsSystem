@@ -113,6 +113,17 @@ public class NewsDaoImpl extends BaseDao<News> implements NewsDao {
 		}
 		return totalCount;
 	}
+	
+	/**
+	 * 查找所有新闻
+	 */
+	@Override
+	public List<News> findAllNews() {
+		List<News> list=null;
+		String sql = "select * from news ";
+		list = super.executeQuery(sql, new Object[]{});
+		return list;
+	}
 
 	/**
 	 * 获取新闻实体对象

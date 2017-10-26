@@ -45,4 +45,10 @@ public interface NewsService {
 	 */
 	public List<News> getNewsListByTid(Integer tid);
 	
+	/**
+	 * 获取所有新闻
+	 * @return
+	 */
+	public List<News> getAllNews();
+	
 }
