@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<c:forEach items="${topicList}" var="topic" varStatus="status">
 				<li>${topic.tName } &nbsp;&nbsp;&nbsp;&nbsp; 
 					<a href="topic_modify.jsp?tid=${topic.tId }&tName=${topic.tName}">修改</a>
-					<a href="javascript:var tid=${topic.tId};toTopicModify()">修改</a>
+					<a href="javascript:var tid=${topic.tId};tName='${topic.tName}';toTopicModify()">修改</a>
 					&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">删除</a>
 				</li>
 			</c:forEach>

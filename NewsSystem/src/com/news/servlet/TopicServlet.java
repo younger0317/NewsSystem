@@ -40,7 +40,8 @@ public class TopicServlet extends HttpServlet {
 				String tName = req.getParameter("tname");
 				boolean flag = topicService.findTopicByTname(tName);
 				if(flag){
-					int tid= Integer.parseInt(req.getParameter("tid"));
+					String tidStr = req.getParameter("tid");
+					int tid= Integer.parseInt(tidStr);
 					int update = topicService.changeTopicName(tid, tName);
 					
 					resp.sendRedirect(req.getContextPath()+"/newspages/topic_list.jsp");					

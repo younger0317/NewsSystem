@@ -51,6 +51,10 @@ public class AdminNewsServlet extends HttpServlet {
 			}else if(type.equals("toAddTopic")){
 				req.getRequestDispatcher("newspages/adminAddTopicList.jsp").forward(req, resp);
 			}else if(type.equals("modify")){
+				String tid = req.getParameter("tid");
+				String tName = req.getParameter("tName");
+				req.setAttribute("tid", tid);
+				req.setAttribute("tName", tName);
 				req.getRequestDispatcher("newspages/adminModifyTopicList.jsp").forward(req, resp);
 			}
 		}

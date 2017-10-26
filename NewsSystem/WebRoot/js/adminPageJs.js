@@ -12,6 +12,5 @@ function toAddTopic(){
 }
 
 function toTopicModify(){
-	alert('aaa');
-	$("#opt_area").load("../AdminNewsServlet", "type=modify&tid="+tid);
+	$("#opt_area").load("../AdminNewsServlet", "type=modify&tid="+tid+"&tName="+tName);
 }

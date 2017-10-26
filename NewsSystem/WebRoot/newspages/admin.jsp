@@ -31,7 +31,7 @@
 	  </div> 
 	  <div id="opt_list">
 	 	<%@include file="console_element/left.html" %>
-	 	<!-- <iframe src="console_element/left.html" scrolling="no" frameborder="0" width="130px"></iframe> -->
+
 	  </div>
 	  <div id="opt_area"> 
 	  
