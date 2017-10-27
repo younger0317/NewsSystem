@@ -54,5 +54,12 @@ public interface NewsDao {
 	 */
 	public List<News> findAllNews();
 	
+	/**
+	 * 添加新闻
+	 * @param news 新的新闻对象
+	 * @return
+	 */
+	public int addNews(News news);
+	
 	
 }

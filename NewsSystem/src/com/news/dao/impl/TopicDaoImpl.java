@@ -62,6 +62,17 @@ public class TopicDaoImpl extends BaseDao<Topic> implements TopicDao {
 	}
 	
 	/**
+	 * 删除主题
+	 */
+	@Override
+	public int delTopic(int tid) {
+		int update =0;
+		String sql = "delete from topic where tid=?";
+		update = super.executeUpdate(sql, new Object[]{tid});
+		return update;
+	}
+	
+	/**
 	 * 获得主题对象
 	 */
 	@Override

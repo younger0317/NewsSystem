@@ -49,6 +49,15 @@
   	<url-pattern>/NewsServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>DoNews</servlet-name>
+  	<servlet-class>com.news.servlet.DoNews</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DoNews</servlet-name>
+  	<url-pattern>/DoNews</url-pattern>
+  </servlet-mapping>
+  
   <filter>
   	<filter-name>CharsetFilter</filter-name>
   	<filter-class>com.news.filter.CharsetFilter</filter-class>

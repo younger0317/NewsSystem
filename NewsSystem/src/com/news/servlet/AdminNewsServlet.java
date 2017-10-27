@@ -18,8 +18,8 @@ import com.news.service.impl.TopicServiceImpl;
 /**
  * 
  * @author linbingyang
- * @version 1.0
- * 管理员新闻列表控制器
+ * @version 1.1
+ * 管理员界面控制器
  *
  */
 public class AdminNewsServlet extends HttpServlet {
@@ -56,6 +56,10 @@ public class AdminNewsServlet extends HttpServlet {
 				req.setAttribute("tid", tid);
 				req.setAttribute("tName", tName);
 				req.getRequestDispatcher("newspages/adminModifyTopicList.jsp").forward(req, resp);
+			}else if(type.equals("newsAdd")){
+				List<Topic> topicList = topicService.findAllTopic();
+				req.setAttribute("topicList", topicList);
+				req.getRequestDispatcher("newspages/adminNewsAdd.jsp").forward(req, resp);
 			}
 		}
 	}

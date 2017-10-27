@@ -51,4 +51,11 @@ public interface NewsService {
 	 */
 	public List<News> getAllNews();
 	
+	/**
+	 * 添加新闻
+	 * @param news 新的新闻对象
+	 * @return
+	 */
+	public  boolean addNews(News news);
+	
 }

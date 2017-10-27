@@ -91,5 +91,26 @@ public class TopicServiceImpl implements TopicService {
 		DatabaseUtil.closeAll(conn, null, null);
 		return flag;
 	}
+	
+	/**
+	 * 删除主题
+	 */
+	@Override
+	public boolean delTopic(int tid) {
+		//获得链接
+		Connection conn = DatabaseUtil.getConnection();
+		//创建topicDao对象
+		TopicDao topicDao = new TopicDaoImpl(conn);	
+		
+		boolean flag = false;
+		int addTopic = topicDao.delTopic(tid);
+		if(addTopic>0){
+			flag = true;
+		}
+		
+		//关闭资源
+		DatabaseUtil.closeAll(conn, null, null);
+		return flag;
+	}
 
 }

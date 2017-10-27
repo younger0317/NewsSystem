@@ -114,6 +114,8 @@ public class NewsDaoImpl extends BaseDao<News> implements NewsDao {
 		return totalCount;
 	}
 	
+	
+	
 	/**
 	 * 查找所有新闻
 	 */
@@ -123,6 +125,18 @@ public class NewsDaoImpl extends BaseDao<News> implements NewsDao {
 		String sql = "select * from news ";
 		list = super.executeQuery(sql, new Object[]{});
 		return list;
+	}
+	
+	
+	/**
+	 * 添加新的新闻
+	 */
+	@Override
+	public int addNews(News news) {
+		String sql = "insert into news(ntid,ntitle,nauthor,ncreateDate,npicPath,ncontent,nmodifyDate,nsummary) values"
+					+"(?,?,?,now(),?,?,now(),?)";
+		int executeUpdate = super.executeUpdate(sql, new Object[]{news.getNtId(),news.getnTitle(),news.getNauthor(),news.getnPicPaht(),news.getnContent(),news.getnSumary()});
+		return executeUpdate;
 	}
 
 	/**

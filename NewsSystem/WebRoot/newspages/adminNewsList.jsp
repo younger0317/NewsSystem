@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li>${news.nTitle } <span> 作者：${news.nauthor
 						}&#160;&#160;&#160;&#160;<a
 						href='news_modify.jsp?nid=${news.nId }'>修改</a>
-						&#160;&#160;&#160;&#160; <a href='#'>删除</a> </span></li>
+						&#160;&#160;&#160;&#160; <a href="javascript:var nid=${news.nId};delNews()">删除</a> </span></li>
 			</c:forEach>
 		</c:when>
 		<c:otherwise>

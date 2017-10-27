@@ -19,9 +19,10 @@
 <script type="text/javascript" src="../js/jquery-1.8.3.js" ></script>
 <script type="text/javascript" src="../js/adminPageJs.js" ></script>
 <script type="text/javascript">
-	$(function(){
+	/*$(function(){
 		init();
-	})
+		alert("x");
+	})*/
 </script>
 </head>
 <body>
