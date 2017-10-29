@@ -61,5 +61,12 @@ public interface NewsDao {
 	 */
 	public int addNews(News news);
 	
+	/**
+	 * 删除新闻
+	 * @param nid 新闻id
+	 * @return
+	 */
+	public int delNewsById(int nid);
+	
 	
 }

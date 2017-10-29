@@ -82,3 +82,19 @@ function doAddNews(){
 		}
 	}
 }
+
+function delNews(){
+	
+	$.get("../DoNews","type=del&nid="+nid,delNewsBack);
+	
+	function delNewsBack(data){
+		if(data == "true"){
+			alert("删除成功");
+			init();
+		}else{
+			alert("删除失败");
+			init();
+		}
+	}
+	
+}

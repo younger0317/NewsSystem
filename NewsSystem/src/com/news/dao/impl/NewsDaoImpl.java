@@ -138,6 +138,16 @@ public class NewsDaoImpl extends BaseDao<News> implements NewsDao {
 		int executeUpdate = super.executeUpdate(sql, new Object[]{news.getNtId(),news.getnTitle(),news.getNauthor(),news.getnPicPaht(),news.getnContent(),news.getnSumary()});
 		return executeUpdate;
 	}
+	
+	/**
+	 * 删除新闻
+	 */
+	@Override
+	public int delNewsById(int nid) {
+		String sql = "delete from news where nid =?";
+		int update = super.executeUpdate(sql, new Object[]{nid});
+		return update;
+	}
 
 	/**
 	 * 获取新闻实体对象

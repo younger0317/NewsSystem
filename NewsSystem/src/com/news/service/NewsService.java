@@ -58,4 +58,11 @@ public interface NewsService {
 	 */
 	public  boolean addNews(News news);
 	
+	/**
+	 * 删除新闻
+	 * @param nid 新闻id
+	 * @return
+	 */
+	public boolean delNewsById(int nid);
+	
 }

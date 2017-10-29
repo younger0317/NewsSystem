@@ -40,7 +40,6 @@ public class DoNews extends HttpServlet {
 				//添加新闻
 				String ntidStr = req.getParameter("ntid");
 				int ntid=Integer.parseInt(ntidStr);
-				System.out.println(ntid);
 				String ntitle = req.getParameter("ntitle");
 				String nauthor = req.getParameter("nauthor");
 				String nsummary = req.getParameter("nsummary");
@@ -54,6 +53,15 @@ public class DoNews extends HttpServlet {
 					out.print("false");
 				}
 				
+			}else if(type.equals("del")){
+				String nidStr = req.getParameter("nid");
+				int nid = Integer.parseInt(nidStr);
+				boolean flag = newsService.delNewsById(nid);
+				if(flag){
+					out.print("true");
+				}else {
+					out.print("false");
+				}
 			}
 		}
 	}
