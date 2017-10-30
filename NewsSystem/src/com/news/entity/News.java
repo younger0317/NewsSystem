@@ -101,6 +101,19 @@ public class News implements Serializable {
 		this.nModifyDate = nModifyDate;
 		this.nSumary = nSumary;
 	}
+	public News(Integer ntId, String nTitle, String nauthor, String nContent,
+			String nSumary) {
+		super();
+		this.ntId = ntId;
+		this.nTitle = nTitle;
+		this.nauthor = nauthor;
+		this.nContent = nContent;
+		this.nSumary = nSumary;
+		//不上传图片路径
+		this.nPicPaht=null;
+	}
+	
+	
 	
 	
 	

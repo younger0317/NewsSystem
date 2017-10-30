@@ -15,7 +15,7 @@ import com.news.service.impl.TopicServiceImpl;
 /**
  * 
  * @author linbingyang
- * @version 1.0
+ * @version 2.0
  * 主题功能控制器
  *
  */
@@ -34,42 +34,45 @@ public class TopicServlet extends HttpServlet {
 		PrintWriter out=resp.getWriter();
 		TopicService topicService = new TopicServiceImpl();
 		
-		String type = (String)req.getAttribute("type");
-		if(type != null){
-			if(type.equals("frist")){
-				List<Topic> topicList = topicService.findAllTopic();
-				req.setAttribute("topicList", topicList);
-				req.getRequestDispatcher("/newspages/topic_list.jsp").forward(req, resp);
-				return;
-			}
-		}
-		
-		type = req.getParameter("type");
+		String type = req.getParameter("type");
+		System.out.println(">>>>>>>>>>>>come in,type:"+type);
 		if(type != null){
 			if(type.equals("modify")){
-				String tName = req.getParameter("tname");
+				String tName = req.getParameter("tName");
 				boolean flag = topicService.findTopicByTname(tName);
 				if(flag){
-					int tid= Integer.parseInt(req.getParameter("tid"));
+					String tidStr = req.getParameter("tid");
+					int tid= Integer.parseInt(tidStr);
 					int update = topicService.changeTopicName(tid, tName);
-					
-					resp.sendRedirect(req.getContextPath()+"/newspages/topic_list.jsp");					
+					out.print("true");	
+				
 				}else{
-					
-					resp.sendRedirect(req.getContextPath()+"/newspages/topic_list.jsp");
+					out.print("false");
 				}
 			}else if(type.equals("add")){
-				String tName = req.getParameter("tname");
+				String tName = req.getParameter("tName");
+				System.out.println("tName");
 				boolean flag = topicService.findTopicByTname(tName);
 				if(flag){
 					boolean addTopic = topicService.addTopic(tName);
-					
-					resp.sendRedirect(req.getContextPath()+"/newspages/topic_list.jsp");
+					out.print("true");	
 				}else{
-					resp.sendRedirect(req.getContextPath()+"/newspages/topic_list.jsp");
+					out.print("false");
 				}
+			}else if(type.equals("del")){
+				String tidStr = req.getParameter("tid");
+				int tid= Integer.parseInt(tidStr);
+				boolean delTopic = topicService.delTopic(tid);
+				if(delTopic){
+					out.print("true");	
+				}else{
+					out.print("false");
+				}
+				
 			}
 		}
-		
+		System.out.println(">>>>>>>>out");
+		out.flush();
+		out.close();
 	}
 }

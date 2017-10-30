@@ -1,6 +1,7 @@
 package com.news.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,13 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.news.entity.News;
 import com.news.entity.Page;
+import com.news.entity.Topic;
 import com.news.service.NewsService;
+import com.news.service.TopicService;
 import com.news.service.impl.NewsServiceImpl;
+import com.news.service.impl.TopicServiceImpl;
 /**
  * 
  * @author linbingyang
- * @version 1.0
- * 管理员新闻列表控制器
+ * @version 1.1
+ * 管理员界面控制器
  *
  */
 public class AdminNewsServlet extends HttpServlet {
@@ -30,47 +34,33 @@ public class AdminNewsServlet extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		NewsService newsService = new NewsServiceImpl();
+		TopicService topicService = new TopicServiceImpl();
+		//System.out.println("进来了");
 		
-		String type =(String) req.getAttribute("type");
-		if(type != null){
-			if(type.equals("frist")){
-				//获取页面中心新闻集合,因为第一次访问，所以currentNo为1，pagesize=10
-				Page<News> page = newsService.getPageNewsList(1, 10);
-				if(page.getList() != null && page.getList().size()>0 ){
-					//存储新闻集合
-					req.setAttribute("mainNewsList", page.getList());
-					//存储当前页
-					req.setAttribute("currentNo", page.getCurrentNo());
-					//存储分页数
-					req.setAttribute("totalPageCount", page.getTotalPageCount());
-					//存储下次的跳转类型
-					req.setAttribute("type", "noFrist");
-				}else{
-					//如果当前页没有新闻集合
-					req.setAttribute("noMsg", "noMsg");
-				}	
-			}
-		}
-		
-		type = req.getParameter("type");
+		String type = req.getParameter("type");
 		if(type!=null){
-			if(type.equals("noFrist")){
-				Page<News> page = newsService.getPageNewsList(Integer.parseInt(req.getParameter("currentNo")), 10);
-				if(page.getList() != null && page.getList().size()>0 ){
-					//存储新闻集合
-					req.setAttribute("mainNewsList", page.getList());
-					//存储当前页
-					req.setAttribute("currentNo", page.getCurrentNo());
-					//存储分页数
-					req.setAttribute("totalPageCount", page.getTotalPageCount());
-				}else{
-					//如果当前页没有新闻集合
-					req.setAttribute("noMsg", "noMsg");
-				}	
+			if(type.equals("list")){
+				List<News> newsList = newsService.getAllNews();
+				req.setAttribute("newsList", newsList);
+				//System.out.println("aaaaa");
+				req.getRequestDispatcher("newspages/adminNewsList.jsp").forward(req, resp);
+			}else if(type.equals("topicList")){
+				List<Topic> topicList = topicService.findAllTopic();
+				req.setAttribute("topicList", topicList);
+				req.getRequestDispatcher("newspages/adminTopicList.jsp").forward(req, resp);
+			}else if(type.equals("toAddTopic")){
+				req.getRequestDispatcher("newspages/adminAddTopicList.jsp").forward(req, resp);
+			}else if(type.equals("modify")){
+				String tid = req.getParameter("tid");
+				String tName = req.getParameter("tName");
+				req.setAttribute("tid", tid);
+				req.setAttribute("tName", tName);
+				req.getRequestDispatcher("newspages/adminModifyTopicList.jsp").forward(req, resp);
+			}else if(type.equals("newsAdd")){
+				List<Topic> topicList = topicService.findAllTopic();
+				req.setAttribute("topicList", topicList);
+				req.getRequestDispatcher("newspages/adminNewsAdd.jsp").forward(req, resp);
 			}
 		}
-		
-		
-		req.getRequestDispatcher("/newspages/admin.jsp").forward(req, resp);
 	}
 }

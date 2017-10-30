@@ -38,4 +38,11 @@ public interface TopicDao {
 	 * @return
 	 */
 	public int addTopic(String tName);
+	
+	/**
+	 * 删除主题
+	 * @param tid 主题id
+	 * @return
+	 */
+	public int delTopic(int tid);
 }

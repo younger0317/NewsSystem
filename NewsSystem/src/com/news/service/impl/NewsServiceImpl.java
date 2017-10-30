@@ -116,5 +116,61 @@ public class NewsServiceImpl implements NewsService {
 		DatabaseUtil.closeAll(conn, null, null);
 		return totalCount;
 	}
+	
+	/**
+	 * 获取所有新闻
+	 */
+	@Override
+	public List<News> getAllNews() {
+		//获取数据库链接
+		Connection conn = DatabaseUtil.getConnection();
+		//创建新闻Dao对象
+		NewsDao newsDao = new NewsDaoImpl(conn);
+		List<News> newsList =null;
+		newsList = newsDao.findAllNews();
+		DatabaseUtil.closeAll(conn, null, null);
+		return newsList;
+	}
+	
+	/**
+	 * 添加新闻
+	 */
+	@Override
+	public boolean addNews(News news) {
+		//获取数据库链接
+		Connection conn = DatabaseUtil.getConnection();
+		//创建新闻Dao对象
+		NewsDao newsDao = new NewsDaoImpl(conn);
+		boolean flag = false;
+		int addNews = newsDao.addNews(news);
+		
+		
+		if(addNews>0){
+			flag=true;
+		}
+		
+		return flag;
+	}
+	
+	/**
+	 * 删除新闻
+	 */
+	@Override
+	public boolean delNewsById(int nid) {
+		//获取数据库链接
+		Connection conn = DatabaseUtil.getConnection();
+		//创建新闻Dao对象
+		NewsDao newsDao = new NewsDaoImpl(conn);
+		boolean flag = false;
+		
+		int delNews = newsDao.delNewsById(nid);
+		
+		if(delNews>0){
+			flag=true;
+		}
+		
+		DatabaseUtil.closeAll(conn, null, null);
+		return flag;
+	}
 
 }

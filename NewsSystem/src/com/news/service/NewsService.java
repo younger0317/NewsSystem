@@ -45,4 +45,24 @@ public interface NewsService {
 	 */
 	public List<News> getNewsListByTid(Integer tid);
 	
+	/**
+	 * 获取所有新闻
+	 * @return
+	 */
+	public List<News> getAllNews();
+	
+	/**
+	 * 添加新闻
+	 * @param news 新的新闻对象
+	 * @return
+	 */
+	public  boolean addNews(News news);
+	
+	/**
+	 * 删除新闻
+	 * @param nid 新闻id
+	 * @return
+	 */
+	public boolean delNewsById(int nid);
+	
 }

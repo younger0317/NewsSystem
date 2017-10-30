@@ -38,4 +38,11 @@ public interface TopicService {
 	 * @return
 	 */
 	public boolean addTopic(String tName);
+	
+	/**
+	 * 删除主题
+	 * @param tid 主题id
+	 * @return
+	 */
+	public boolean delTopic(int tid);
 }
